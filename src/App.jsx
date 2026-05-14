@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 
-const socket = io('https://chat-app-backend-lz4d.onrender.com');
+const socket = io('https://chat-app-backend-1z4d.onrender.com');
 
 export default function App() {
   const [page,     setPage]     = useState('login');
@@ -14,7 +14,7 @@ export default function App() {
   const [error,    setError]    = useState('');
 
   useEffect(() => {
-    fetch('https://chat-app-backend-lz4d.onrender.com/messages')
+    fetch('https://chat-app-backend-1z4d.onrender.com/messages')
       .then(res => res.json())
       .then(data => setMessages(data));
     socket.on('message', (data) => {
@@ -24,7 +24,7 @@ export default function App() {
   }, []);
 
   async function handleRegister() {
-    const res  = await fetch('https://chat-app-backend-lz4d.onrender.com/register', {
+    const res  = await fetch('https://chat-app-backend-1z4d.onrender.com/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password }),
@@ -36,7 +36,7 @@ export default function App() {
   }
 
   async function handleLogin() {
-    const res  = await fetch('https://chat-app-backend-lz4d.onrender.com/login', {
+    const res  = await fetch('https://chat-app-backend-1z4d.onrender.com/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
@@ -57,7 +57,6 @@ export default function App() {
     if (e.key === 'Enter') handleSend();
   }
 
-  // Auth Page
   if (!user) return (
     <div style={{
       minHeight: '100vh',
@@ -135,7 +134,6 @@ export default function App() {
     </div>
   );
 
-  // Chat Page
   return (
     <div style={{
       minHeight: '100vh',
@@ -144,7 +142,6 @@ export default function App() {
       display: 'flex',
       flexDirection: 'column',
     }}>
-      {/* Header */}
       <div style={{
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
         padding: '15px 20px',
@@ -183,7 +180,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* Messages */}
       <div style={{
         flex: 1,
         overflowY: 'auto',
@@ -228,7 +224,6 @@ export default function App() {
         })}
       </div>
 
-      {/* Input */}
       <div style={{
         background: 'white',
         padding: '15px 20px',
